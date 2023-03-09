@@ -1,0 +1,236 @@
+local library = loadstring(game:GetObjects("rbxassetid://7657867786")[1].Source)()
+local Wait = library.subs.Wait 
+
+local PepsisWorld = library:CreateWindow({
+Name = "Kill Monsters To Save The Princess Script | By VIPER",
+Themeable = {
+Info = "https://discord.gg/"
+}
+})
+
+local GeneralTab = PepsisWorld:CreateTab({
+Name = "General"
+})
+
+
+local MainSection = GeneralTab:CreateSection({
+   Name = "Combat"
+   })
+
+   MainSection:AddToggle({
+   Name = "Kill Aura",
+   Flag = "Autoaura",
+   Keybind = 1,
+   Callback = function(state)
+       getgenv().killAura = state
+       killAura()
+   end
+   })
+
+
+   MainSection:AddToggle({
+    Name = "AutoFarm Mobs(BEST)",
+    Flag = "AutoBlah",
+    Keybind = 1,
+    Callback = function(state)
+        getgenv().autoFarmMob = state
+        autoFarmMob()
+    end
+    })
+
+
+
+    
+   MainSection:AddToggle({
+    Name = "AutoFarm Mobs(BEHIND)",
+    Flag = "AutoBlah",
+    Keybind = 1,
+    Callback = function(state)
+        getgenv().autoBehindmob = state
+        autoBehindmob()
+    end
+    })
+
+    
+    local MainSection2 = GeneralTab:CreateSection({
+        Name = "Extra Combat Mods"
+        })
+
+    
+        
+
+
+
+
+        MainSection2:AddToggle({
+            Name = "Inf Attack Speed",
+            Flag = "ATTACK_SPEED",
+            Keybind = 1,
+            Callback = function(state)
+                getgenv().infiniteattack = state
+                infiniteattack()
+            end
+            })
+
+
+        MainSection2:AddToggle({
+            Name = "Mob Freeze",
+            Flag = "AutofREEZE",
+            Keybind = 1,
+            Callback = function(state)
+                getgenv().MobFreeze = state
+                MobFreeze()
+            end
+            })
+
+
+            local MainSection3 = GeneralTab:CreateSection({
+                Name = "Auto Stat Points"
+                })
+        
+
+                MainSection3:AddToggle({
+                    Name = "Auto Health Points",
+                    Flag = "gsfgdfhdh",
+                    Keybind = 1,
+                    Callback = function(state)
+                        getgenv().autoHealth = state
+                        autoHealth()
+                    end
+                    })
+
+                    MainSection3:AddToggle({
+                        Name = "Auto Attack Points",
+                        Flag = "gvfsgsfg",
+                        Keybind = 1,
+                        Callback = function(state)
+                            getgenv().autoAttack = state
+                            autoAttack()
+                        end
+                        })
+        
+                        
+                        MainSection3:AddToggle({
+                            Name = "Auto Speed Points",
+                            Flag = "afadfadf",
+                            Keybind = 1,
+                            Callback = function(state)
+                                getgenv().autoSpeed = state
+                                autoSpeed()
+                            end
+                            })
+        
+                            
+                            MainSection3:AddToggle({
+                                Name = "Auto Luck Points",
+                                Flag = "qfwqfwqf",
+                                Keybind = 1,
+                                Callback = function(state)
+                                    getgenv().autoLuck = state
+                                    autoLuck()
+                                end
+                                })
+                    
+                                MainSection3:AddToggle({
+                                    Name = "Auto Luck Points",
+                                    Flag = "qfwqfwqf",
+                                    Keybind = 1,
+                                    Callback = function(state)
+                                        getgenv().autoLuck = state
+                                        autoLuck()
+                                    end
+                                    })
+
+
+
+
+
+
+                                    
+
+ function infiniteattack()
+ while getgenv().infiniteattack == true do wait()
+            game:GetService("Players").LocalPlayer.buff["Attack Speed"].Value = 500
+    end
+    end
+                                    
+   function autoHealth()
+    while getgenv().autoHealth == true do wait()                 
+game:GetService("ReplicatedStorage").Remote.Profile.AddPoint:FireServer("Health")
+    end
+end
+
+
+function autoAttack()
+    while getgenv().autoAttack == true do wait()                 
+game:GetService("ReplicatedStorage").Remote.Profile.AddPoint:FireServer("Attack")
+    end
+end
+
+
+
+function autoSpeed()
+    while getgenv().autoSpeed == true do wait()                 
+game:GetService("ReplicatedStorage").Remote.Profile.AddPoint:FireServer("Speed")
+    end
+end
+
+
+
+function autoLuck()
+    while getgenv().autoLuck == true do wait()                 
+game:GetService("ReplicatedStorage").Remote.Profile.AddPoint:FireServer("Luck")
+    end
+end
+
+
+
+
+-- Kill aura
+function killAura()
+ while getgenv().killAura == true do wait()
+    game:GetService("ReplicatedStorage").Remote.Weapon.TakeDamage:FireServer()
+    
+    end
+end
+    
+
+
+--MOB FREEZE
+function MobFreeze()
+    while getgenv().MobFreeze == true do wait()
+for i,v in pairs(game:GetService("Workspace").Waves[1].Enemy:GetDescendants()) do
+    if v.Name == "HumanoidRootPart" then v.Anchored = true
+    end
+end
+end
+end
+
+
+-- Good autofarm
+function autoFarmMob()
+while getgenv().autoFarmMob == true do wait()
+    for i,v in pairs(game:GetService("Workspace").Waves[1].Enemy:GetDescendants()) do
+      if v.Name == "HumanoidRootPart" then
+        v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-3)
+      end
+
+  end
+end
+end
+
+
+--TELEPORT BEHIND AUTOFARM
+function autoBehindmob()
+while getgenv().autoBehindmob == true do wait()
+    --game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+    for i,v in pairs(game:GetService("Workspace").Waves[1].Enemy:GetDescendants()) do
+      if v.Name == "HumanoidRootPart" then
+          --v.Anchored = true
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0,0,3)
+      end
+
+  end
+end
+end
+
